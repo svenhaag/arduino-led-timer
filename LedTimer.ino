@@ -4,7 +4,6 @@
 #include <NTPClient.h>
 #include <Arduino_LED_Matrix.h>
 #include <FastLED.h>
-#include <uICAL.h>
 #include "LedMatrixDigits.h"
 #include "WifiConfig.h"
 #include "LedStripConfig.h"
