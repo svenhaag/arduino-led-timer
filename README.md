@@ -24,8 +24,10 @@ This project uses the following third party projects:
 
 * NTP: https://github.com/arduino-libraries/NTPClient/
 * FastLED: https://fastled.io/docs/index.html
-* RTC: https://docs.arduino.cc/tutorials/uno-r4-wifi/rtc/
 * Logger: https://github.com/thijse/Arduino-Log/
+* RTC: https://docs.arduino.cc/tutorials/uno-r4-wifi/rtc/ & https://github.com/arduino/ArduinoCore-renesas/tree/1.5.1/libraries/RTC
+* WiFiS3: https://docs.arduino.cc/tutorials/uno-r4-wifi/wifi-examples/ & https://github.com/arduino/ArduinoCore-renesas/tree/1.5.1/libraries/WiFiS3
+* LED Matrix: https://docs.arduino.cc/tutorials/uno-r4-wifi/led-matrix/ & https://github.com/arduino/ArduinoCore-renesas/tree/1.5.1/libraries/Arduino_LED_Matrix
 
 # Configuration
 
@@ -69,21 +71,14 @@ The `LedFlashConfig.h` can be used to:
 * Disable the flash-mode
 * Define time in milliseconds for _on_ and _off_ state
 * Define the total duration the flash-mode is active
-* Alternatively, define the number of flash cycles
 
 ## Timezone Config
 
-See the `initNtpClient` function to configure the date and time for changes between summer and winter time.
+See the `TimerConfig.h` to configure your time-zone.
+Per default, it is set to `Europe/Berlin`.
 
-E.g. for Germany:
-
-```cpp
-  // CEST: Central European Summertime GMT + 120mins
-  ntp.ruleDST("CEST", Last, Sun, Mar, 2, 120);
-
-  // CET: Central European Time GMT + 60mins
-  ntp.ruleSTD("CET", Last, Sun, Oct, 3, 60);
-```
+Technically, the time-zone is set for the whole system, using `setenv("TZ", TIME_ZONE, 1)` and `tzset()`.
+The actual values can be figured out under: https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv
 
 # Development
 
